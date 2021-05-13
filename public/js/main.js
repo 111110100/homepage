@@ -21,10 +21,10 @@ about.addEventListener('click', () => {
     y: "center",
     width: '400px',
     height: '400px',
-    top: 5,
-    right: 5,
-    bottom: 5,
-    left: 5,
+    top: 1,
+    right: 1,
+    bottom: 1,
+    left: 1,
     mount: aboutContent,
     onfocus: function () {
       this.setBackground('#00aa00')
@@ -51,10 +51,10 @@ contact.addEventListener('click', () => {
     background: '#00aa00',
     width: '400px',
     height: '400px',
-    top: 5,
-    right: 5,
-    bottom: 5,
-    left: 5,
+    top: 1,
+    right: 1,
+    bottom: 1,
+    left: 1,
     mount: contactContent,
     onfocus: function () {
       this.setBackground('#00aa00')
