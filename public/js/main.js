@@ -15,7 +15,7 @@ about.addEventListener('click', () => {
   }
   aboutOpen = true
   const aboutBox = new WinBox({
-    title: 'About Me',
+    title: 'whoami',
     // modal: true,
     x: "center",
     y: "center",
@@ -45,7 +45,7 @@ contact.addEventListener('click', () => {
   }
   contactOpen = true
   const contactBox = new WinBox({
-    title: 'Contact Me',
+    title: 'contact me',
     x: horizontalCenter - 150,
     y: verticalCenter - 150,
     background: '#00aa00',
