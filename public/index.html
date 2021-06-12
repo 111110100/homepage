@@ -65,7 +65,7 @@
           I'm an experienced IT Operations Manager with a demonstrated history of working in the online media industry.
         </p>
         <p>
-          Skilled in Linux, AWS, GCP, Firebase, Varnish, Apache, lightly, and Nginx. Additional knowledge in PHP, Python, NodeJS, & Chatbots (Dialogflow + FB Messenger, Viber Messenger & Twitter). And finally, vim.
+          Skilled in Linux, AWS, GCP, Varnish, Apache, lightly, and Nginx. Additional knowledge in PHP, Python, NodeJS, Firebase & Chatbots (Dialogflow + FB Messenger, Viber Messenger & Twitter). And finally, vim.
         </p>
       </div>
 
@@ -81,5 +81,28 @@
 
     <script src="js/winbox.bundle.js"></script>
     <script src="js/main.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyBUlE6pCe6Z5IkOGzkz8sXeDihkZ7_QWGo",
+        authDomain: "pivotal-crawler-300516.firebaseapp.com",
+        projectId: "pivotal-crawler-300516",
+        storageBucket: "pivotal-crawler-300516.appspot.com",
+        messagingSenderId: "1037776771192",
+        appId: "1:1037776771192:web:d33acfad8da5d25980758d",
+        measurementId: "G-FC15TN9ZJR"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
   </body>
 </html>
