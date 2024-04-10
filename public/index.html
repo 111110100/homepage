@@ -13,6 +13,15 @@
 
         <!--Page Title-->
         <title>Erwin Lomibao</title>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G3DBN402ZE"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-G3DBN402ZE');
+        </script>
 
         <!--Plugins Css-->
         <link rel="stylesheet" type="text/css" href="css/plugins.css" />
@@ -616,6 +625,30 @@
         <script src="js/plugins.min.js"></script>
         <!--Site Main JS-->
         <script src="js/main.js"></script>
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+
+        <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyBUlE6pCe6Z5IkOGzkz8sXeDihkZ7_QWGo",
+            authDomain: "pivotal-crawler-300516.firebaseapp.com",
+            projectId: "pivotal-crawler-300516",
+            storageBucket: "pivotal-crawler-300516.appspot.com",
+            messagingSenderId: "1037776771192",
+            appId: "1:1037776771192:web:d33acfad8da5d25980758d",
+            measurementId: "G-FC15TN9ZJR"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        </script>
 
         <script>
 $('#video-container').YTPlayer({
