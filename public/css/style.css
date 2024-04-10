@@ -1323,6 +1323,7 @@ header .menu-button.menu-button--open span:nth-child(3) {
 
 .testimonials {
 	margin-bottom: 100px;
+	display: none;
 }
 
 .testimonials .testimonial-item {
