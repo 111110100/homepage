@@ -127,6 +127,7 @@ a {
 	text-decoration: none;
 	color: #e1e1e1;
 	outline: none;
+	font-weight: bold;
 }
 
 a:hover {
