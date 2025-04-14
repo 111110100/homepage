@@ -86,7 +86,8 @@ a:hover {
     height: 100%;
     padding: 15px;
     box-sizing: border-box;
-    overflow-y: auto; /* Scroll if content overflows */
+    /* overflow-y: auto; /* Scroll if content overflows */
+    overflow: hidden;
     /* border-right: 2px solid #0f0; */ /* <<< REMOVED BORDER */
     font-size: 0.9em;
     display: flex;
