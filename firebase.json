@@ -27,8 +27,8 @@
                     "value": "no-cache, no-store, must-revalidate"
                 }
             ]
-        },
-    ]
+        }
+    ],
     "public": "public",
     "ignore": [
       "firebase.json",
