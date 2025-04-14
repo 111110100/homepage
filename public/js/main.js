@@ -147,6 +147,7 @@ const simulatedPartitions = [
 ];
 const simulatedProcesses = [ // Base processes
     { pid: 1, user: 'root', cmd: 'kernel_task' },
+    { pid: 101, user: 'sys', cmd: 'grid_daemon' },
     { pid: 210, user: 'sys', cmd: 'security_svc' },
     { pid: 501, user: USERNAME, cmd: 'terminal_shell' },
     { pid: 505, user: USERNAME, cmd: 'yt_player_bg' },
@@ -155,11 +156,10 @@ let dynamicProcesses = [ // For processes that come and go
     { pid: 71, user: 'sys', cmd: 'net_probe' },
     { pid: 89, user: 'sys', cmd: 'data_sync' },
     { pid: 95, user: 'sys', cmd: 'cache_clean' },
-    { pid: 101, user: 'sys', cmd: 'grid_daemon' },
     { pid: 105, user: 'sys', cmd: 'net_handler' },
     { pid: 612, user: 'sys', cmd: 'io_monitor' },
     { pid: 734, user: 'sys', cmd: 'logd' },
-    { pid: 938, user: USERNAME, cmd: 'log_rotate' },
+    { pid: 938, user: 'cron', cmd: 'log_rotate' },
     { pid: 866, user: USERNAME, cmd: 'render_task' },
 ];
 
