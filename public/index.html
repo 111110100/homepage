@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="vcard, resume, personal, portfolio, cv, card, responsive" />
+    <meta name="keywords" content="vcard, resume, personal, portfolio, cv, card, responsive" />
     <title>ENCOM OS Terminal :: Grid Access</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,6 +14,27 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+          apiKey: "AIzaSyBUlE6pCe6Z5IkOGzkz8sXeDihkZ7_QWGo",
+          authDomain: "pivotal-crawler-300516.firebaseapp.com",
+          projectId: "pivotal-crawler-300516",
+          storageBucket: "pivotal-crawler-300516.appspot.com",
+          messagingSenderId: "1037776771192",
+          appId: "1:1037776771192:web:d33acfad8da5d25980758d",
+          measurementId: "G-FC15TN9ZJR"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
     <!-- Video Background Container -->
     <div id="video-background"></div>
 
