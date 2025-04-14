@@ -1,678 +1,82 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENCOM OS Terminal :: Grid Access</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <!-- Favicon (Optional but recommended) -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Video Background Container -->
+    <div id="video-background"></div>
 
-    <head>
+    <!-- Main Container for Layout -->
+    <div class="container">
 
-        <!--Meta Tags-->
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Erwin Lomibao: IT Professional and Systems Admin. HIRE ME!" />
-        <meta name="keywords" content="linux, nginx, lighttpd, apache, php, aws, amazon web service, gcp, google cloud platform, mysql, varnish, python, nodejs, javascript, bash, zsh, leetcode, linkedin, scripting, wordpress, movabletype" />
-        <meta name="author" content="erwin lomibao" />
-
-        <!--Page Title-->
-        <title>Erwin Lomibao: IT Professional and Systems Admin</title>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G3DBN402ZE"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-G3DBN402ZE');
-        </script>
-
-        <!--Plugins Css-->
-        <link rel="stylesheet" type="text/css" href="css/plugins.css" />
-        <!--Main Styles Css-->
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <!--Color Css-->
-        <link rel="stylesheet" type="text/css" href="css/tan-color.css" />
-
-        <!--Modernizr Js-->
-        <script src="js/modernizr.js"></script>
-
-        <!--Favicons-->
-        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-
-    </head>
-
-    <body>
-
-        <!--Preloader Start-->
-        <div class="preloader">
-            <div class="loading-text">
-                <span class="loading-text-words" data-preloader="L">L</span>
-                <span class="loading-text-words" data-preloader="O">O</span>
-                <span class="loading-text-words" data-preloader="A">A</span>
-                <span class="loading-text-words" data-preloader="D">D</span>
-                <span class="loading-text-words" data-preloader="I">I</span>
-                <span class="loading-text-words" data-preloader="N">N</span>
-                <span class="loading-text-words" data-preloader="G">G</span>
+        <!-- Sidebar (Left Column - 20%) -->
+        <div class="sidebar">
+            <div class="sidebar-section" id="sys-info">
+                <h2>System Status</h2>
+                <div>OS Version: <span id="os-version">Loading...</span></div>
+                <div>Hostname: <span id="hostname">Loading...</span></div>
+                <div>IP Address: <span id="ip-address">Loading...</span></div>
+                <div>CPU Cores: <span id="cpu-cores">Loading...</span></div>
+                <div>Uptime: <span id="uptime-sidebar">Loading...</span></div>
+                <div>Load Avg: <span id="load-avg">Loading...</span></div>
+            </div>
+            <hr>
+            <div class="sidebar-section" id="cpu-ram-info">
+                 <h2>CPU / RAM</h2>
+                 <div>CPU: <span id="cpu-type">Loading...</span></div>
+                 <div>CPU Load: <pre id="cpu-load-graph">[          ]</pre></div>
+                 <div>RAM: <span id="ram-info">Loading...</span></div>
+                 <div>RAM Load: <pre id="ram-load-graph">[          ]</pre></div>
+            </div>
+            <hr>
+            <div class="sidebar-section" id="processes">
+                <h2>Processes</h2>
+                <pre id="process-list">Initializing...</pre>
+            </div>
+            <hr>
+            <div class="sidebar-section" id="filesystem">
+                <h2>Filesystem</h2>
+                <div id="fs-list">Initializing...</div>
+            </div>
+            <hr>
+            <div class="sidebar-section" id="user-info">
+                 <h2>User Session</h2>
+                 <div>Username: <span id="username">Loading...</span></div>
+                 <div>Full Name: <span id="fullname">Loading...</span></div>
+                 <div>User Level: <span id="userlevel">Loading...</span></div>
             </div>
         </div>
-        <!--Preloader End-->
 
-        <!-- Header Start -->
-        <header>
-
-            <!-- logo -->
-            <a class="logo" href="#"><span>EL</span></a>
-
-            <!-- navigation button -->
-            <div class="menu-button">
-                <span></span>
-                <span></span>
-                <span></span>
+        <!-- Main Content (Right Column - 80%) -->
+        <div class="main-content">
+            <!-- Terminal Area -->
+            <div id="terminal">
+                <div id="output"></div>
+                <div class="input-line">
+                    <span class="prompt">READY:/&gt;</span>
+                    <input type="text" id="command-input" autocomplete="off" spellcheck="false" autofocus>
+                </div>
             </div>
-
-            <!-- navigation menu -->
-            <nav class="nav-menu">
-                <div class="nav-menu--links">
-                    <a class="nav-menu--link link--active" href="#home"><i class="fas fa-home"></i><span>Home</span></a>
-                    <a class="nav-menu--link" href="#about"><i class="fas fa-user"></i><span>About</span></a>
-                    <a class="nav-menu--link" href="#resume"><i class="fas fa-address-card"></i><span>Resume</span></a>
-                    <a class="nav-menu--link" href="#contact"><i class="fas fa-envelope"></i><span>Contact</span></a>
-                </div>
-
-                <!-- social links -->
-                <div class="social-links">
-                    <a class="social-link" href="https://twitter.com/111110100">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a class="social-link" href="https://www.linkedin.com/in/erwin-lomibao-35b84a109/">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a class="social-link" href="https://www.youtube.com/@5eaf00d">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </div>
-
-                <!-- copyright text -->
-                <div class="copy">
-                    <p>Copyright &copy; 2024 Erwin Lomibao, All rights Reserved.</p>
-                </div>
-
-            </nav>
-
-        </header>
-        <!-- Header End -->
-
-
-        <!-- Pages Stack Start -->
-        <div id="main" class="pages-stack">
-
-            <!--Banner Page Start-->
-            <section id="home"  class="page section-home" style="background-image: url('img/background/bg-img.jpg');">
-
-                <div id="video-container"></div>
-
-                <div class="banner-text">
-                    <div class="profile-img">
-                        <img src="img/profile-img.jpg" alt="A person sitting down, looking to his right. His name is Erwin Lomibao.">
-                    </div>
-
-                    <h4>Erwin Lomibao</h4>
-
-                    <div class="text-slideshow" data-effect="fx12">
-                        <div class="text-slide text-slide--current"><h2 class="animate-title">IT Operations</h2></div>
-                        <div class="text-slide"><h2 class="animate-title">Systems Admin</h2></div>
-                        <div class="text-slide"><h2 class="animate-title">Linux Admin</h2></div>
-                    </div>
-
-                </div>
-            </section>
-            <!--Banner Page End-->
-
-            <!--About Page Start-->
-            <section id="about" class="page section-about">
-                    <div class="container">
-
-                        <div class="page-heading">
-                            <h2 data-shadow="About">About</h2>
-                        </div>
-
-                        <!--About Info Section Start-->
-                        <div class="row about-info mb-60">
-                            <div class="col-lg-5">
-
-                                <!-- about image -->
-                                <div class="about-img">
-                                    <img src="img/about-img.jpg" alt="A person sitting down, looking to his right. His name is Erwin Lomibao.">
-                                </div>
-
-                            </div>
-
-                            <div class="col-lg-7">
-                                <h3 class="mb-20"></h3>
-                                <p>Hello! I’m <strong>Erwin Lomibao</strong>. I'm an experienced Information Technology Operations Manager with a demonstrated history of working in the online media industry. Among other things, I have a working knowledge of <a href="https://linux.org">Linux</a>, <a href="https://aws.amazon.com">Amazon Web Services (AWS)</a>, <a href="https://cloud.google.com">Google Cloud Platform (GCP)</a>, <a href="https://www.mysql.com">MySQL</a>, <a href="https://varnish-cache.org">Varnish</a>, <a href="https://httpd.apache.org">Apache</a>, <a href="https://www.lighttpd.net">lighttpd</a>, and <a href="https://www.nginx.com">Nginx</a>. Additional knowledge in <a href="https://www.php.net">PHP</a>, <a href="https://www.python.org">Python</a>, & <a href="https://nodejs.org">NodeJS</a>.</p>
-
-                                <div class="row mb-20">
-                                    <div class="col-sm-6">
-                                        <!-- about list -->
-                                        <ul class="about-list">
-                                            <li> <span class="title">Name</span> <span class="value">Erwin Lomibao</span> </li>
-                                            <li> <span class="title">Work Experience</span> <span class="value">30 Years</span> </li>
-                                            <li> <span class="title">Email</span> <span class="value">elomibao@gmail.com</span> </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <!-- about list -->
-                                        <ul class="about-list">
-                                            <li> <span class="title">Github</span> <span class="value"><a href="https://github.com/111110100">111110100</a></span> </li>
-                                            <li> <span class="title">Leetcode</span> <span class="value"><a href="https://leetcode.com/111110100/">111110100</a></span> </li>
-                                            <li> <span class="title">LinkedIn</span> <span class="value"></span><a href="https://www.linkedin.com/in/erwin-lomibao-35b84a109/">Erwin Lomibao</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <!-- resume button -->
-                                        <div class="resume-button">
-                                            <a class="main-btn" href="https://docs.google.com/presentation/d/e/2PACX-1vQmIqjjDFksrdV46IzQQebmZzytuOFbl7RzoS5VeaAleX79w_3gWO1QxwVXoj9Fy-CtkOIcNUV8x95u/pub?start=false&loop=false&delayms=3000">Download CV</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!--About Info Section End-->
-
-                        <!--Services Section Start-->
-                        <div class="row services mb-20">
-                            <div class="col-md-12">
-                                <div class="sub-heading">
-                                    <h3 >Strengths</h3>
-                                </div>
-                            </div>
-
-                            <!--service item-->
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="service-item">
-                                    <i class="icon-desktop"></i>
-                                    <h4 class="title">Linux Administration</h4>
-                                    <p>My first taste of Linux was in the mid 90s using <a href="https://www.slackware.com">Slackware Linux</a>. I then moved to <a href="https://www.redhat.com">RedHat</a>/<a href="https://www.centos.org">CentOS</a> and tried several other Linux flavors, including <a href="https://mandrivalinux.com">Mandrake</a>, <a href="https://www.opensuse.org">openSUSE</a>, <a href="https://linspirelinux.com">Linspire</a>, <a href="https://en.wikipedia.org/wiki/Xandros">Xandros</a>, <a href="https://en.wikipedia.org/wiki/EnGarde_Secure_Linux">Engrade</a> and <a href="https://ubuntu.com">Ubuntu</a>. I also have experience with other Operating Systems like <a href="https://freebsd.org">FreeBSD</a>, <a href="https://en.wikipedia.org/wiki/Oracle_Solaris">Solaris</a>, <a href="https://en.wikipedia.org/wiki/BeOS">BeOS</a> and <a href="https://en.wikipedia.org/wiki/QNX">QNX</a>.</p>
-                                </div>
-                            </div>
-
-                            <!--service item-->
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="service-item">
-                                    <i class="icon-tools"></i>
-                                    <h4 class="title">Web Hosting</h4>
-                                     <p>My first foray into web was building <a href="https://www.w3.org/Daemon/">CERN httpd</a> from source. I eventualy moved to <a href="https://httpd.apache.org">Apache</a> and <a href="https://www.php.net">PHP</a>. By 2008, I've moved <a href="https://www.inquirer.net">Inquirer.net</a> from <strong>Apache/PHP</strong> to <strong>Lighttpd/PHP</strong>. By 2009, <strong>Nginx</strong> was on the rise and stable enough that I moved all web properties to it. With Nginx, the <a href="https://www.similarweb.com/website/inquirer.net/">Inquirer.net website at it's peak was serving 60-80 Million pageviews per month</a>.</p>
-                                </div>
-                            </div>
-
-                            <!--service item-->
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="service-item">
-                                    <i class="icon-paintbrush"></i>
-                                    <h4 class="title">Systems Admin</h4>
-                                    <p>At <a href="https://web.archive.org/web/20060706173237/http://isp.mindgate.net/">Mindgate Systems</a>, I had the oppurtunity of being a part of releasing ground breaking services at that time. The highlight for me was the <a href="https://www.kernel.org/doc/html/v5.11/networking/eql.html">Multi-Link connection</a> using two or more <a href="https://support.usr.com/support/s-cour/s-cour-docs/1024492.pdf">US Robotics</a> dialup modems and the <a href="http://portmasters.com/marketing/products/pm3_datasheet.html">Lucent Portmaster</a>. No other ISP nor Telco was offering it at that time.</p>
-                                </div>
-                            </div>
-
-                            <!--service item-->
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="service-item">
-                                    <i class="icon-lightbulb"></i>
-                                    <h4 class="title">Scripting</h4>
-                                    <p>Automation is part of my work, having discovered scripting while building Linux kernel from patches released by <a href="https://en.wikipedia.org/wiki/Alan_Cox_(computer_programmer)">Alan Cox</a>. My final work for Inquirer.net is a script that processes the <a href="https://www.inquirer.net/2022elections/">Philippine's local and national elections</a>. The script, written in Python and using the <a href="https://pandas.pydata.org/">Pandas library</a>, processes the results that came in USB drives.</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--Services Section End-->
-
-                        <!--Clients Logo Section Start-->
-                        <div class="row clients mb-50">
-                            <div class="col-md-12">
-                                <div class="sub-heading">
-                                    <h3>Projects & works that I've been a part of</h3>
-                                </div>
-                            </div>
-
-                            <div class="owl-carousel owl-theme">
-
-                                <!--client logo-->
-                                <div class="client-logo">
-                                    <a href="https://www.inquirer.net">
-                                        <img src="img/clients/client-01.png" alt="Official logo of Inquirer.net">
-                                    </a>
-                                </div>
-
-                                <!--client logo-->
-                                <div class="client-logo">
-                                    <a href="https://preen.ph">
-                                        <img src="img/clients/client-02.png" alt="Official logo of Preen">
-                                    </a>
-                                </div>
-
-                                <!--client logo-->
-                                <div class="client-logo">
-                                    <a href="https://nolisoli.ph">
-                                        <img src="img/clients/client-03.png" alt="Official logo of NoliSoli">
-                                    </a>
-                                </div>
-
-                                <!--client logo-->
-                                <div class="client-logo">
-                                    <a href="https://scoutmag.ph">
-                                        <img src="img/clients/client-04.png" alt="Official logo of Scoutmag">
-                                    </a>
-                                </div>
-
-                                <!--client logo-->
-                                <div class="client-logo">
-                                    <a href="https://multisport.ph">
-                                        <img src="img/clients/client-05.png" alt="Official logo of MultiSport">
-                                    </a>
-                                </div>
-
-                                <!--client logo-->
-                                <div class="client-logo">
-                                    <a href="https://fnbreport.ph">
-                                        <img src="img/clients/client-06.png" alt="Official logo of F&B Report">
-                                    </a>
-                                </div>
-
-                                <!--client logo-->
-                                <div class="client-logo">
-                                    <a href="https://cebudailynews.inquirer.net">
-                                        <img src="img/clients/client-07.png" alt="Official logo of Cebu Daily News">
-                                    </a>
-                                </div>
-
-                                <!--client logo-->
-                                <div class="client-logo">
-                                    <a href="https://bandera.inquirer.net">
-                                        <img src="img/clients/client-08.png" alt="Official logo of Bandera">
-                                    </a>
-                                </div>
-
-                                <!--client logo-->
-                                <div class="client-logo">
-                                    <a href="https://twitter.com/inqtechninjas">
-                                        <img src="img/clients/client-09.png" alt="Official logo of INQ Tech Ninjas">
-                                    </a>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!--Clients Logo Section End-->
-
-                    </div>
-            </section>
-            <!--About Section End-->
-
-            <!--Resume Page Start-->
-            <section id="resume" class="page section-resume">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="page-heading">
-                                <h2 data-shadow="Resume">Resume</h2>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mb-10">
-
-                        <!--Experience Column Start-->
-                        <div class="col-lg-6">
-                            <div class="sub-heading">
-                                <h3>Experience</h3>
-                            </div>
-
-                            <!--experience timeline start-->
-                            <ul class="experience timeline">
-
-                                <!--timeline item-->
-                                <li class="event">
-                                    <h4>Associate Director for IT Operations</h4>
-                                    <h5>
-                                        <span class="date">Jan 2020 - Dec 2023</span>
-                                        <span class="company">Inquirer Interactive, Inc</span>
-                                    </h5>
-                                    <p>Started a project that caches <a href="https://github.com/111110100/wordpress-memcached-nginx-combo">WordPress pages and fetches them in Nginx</a><br />
-                                    Learned DART programming language and the Flutter framework to build a <a href="https://apps.apple.com/au/app/inquirer-news/id1574449602">news reader app</a><br />
-                                    Learned Firebase for app analytics and push notification</p>
-                                </li>
-                                <li class="event">
-                                    <h4>IT Operations Manager</h4>
-                                    <h5>
-                                        <span class="date">Jun 2010 - Jan 2020</span>
-                                        <span class="company">Inquirer Interactive, Inc</span>
-                                    </h5>
-                                    <p>Migrated legacy CMS to Wordpress<br />
-                                    Migrated Webserver from Lighttpd to Nginx<br />
-                                    Migrated infra from on-prem bare metal to <a href="https://www.xenserver.com/">Citrix XenServer</a></p>
-                                </li>
-                                <li class="event">
-                                    <h4>Systems Administrator</h4>
-                                    <h5>
-                                        <span class="date">Jun 2008 - May 2010</span>
-                                        <span class="company">Inquirer Interactive, Inc</span>
-                                    </h5>
-                                    <p>Switched Webserver from Apache to Lighttpd</p>
-                                </li>
-
-                                <!--timeline item-->
-                                <li class="event">
-                                    <h4>Linux and Systems Administrator</h4>
-                                    <h5>
-                                        <span class="date">1997 - 2008</span>
-                                        <span class="company">Mindgate Systems, Inc</span>
-                                    </h5>
-                                    <p><a href="https://web.archive.org/web/20060719235803/http://www.pinoystores.com/home.php">PinoyStores.com</a>: Online shopping featuring Philippine products<br />
-                                    <a href="https://web.archive.org/web/20021205095824/http://pinoybattle.net/Home/home.html">PinoyBattle.net</a>: First online prepaid gaming card<br /></p>
-                                    <a href="https://www.kernel.org/doc/html/v5.11/networking/eql.html">Multi-Link</a>: Dual modem Internet connection using US Robotics modems and Lucent Portmasters<br />
-                                    SpamStop: Subscription based Anti-Spam service<br />
-                                    VirusStop: Subscription based Anti-Virus service<br />
-                                </li>
-
-                                <!--timeline item-->
-                                <li class="event">
-                                    <h4>Programmer</h4>
-                                    <h5>
-                                        <span class="date">1994 - 1996</span>
-                                        <span class="company">University of the East, Caloocan</span>
-                                    </h5>
-                                    <p>Transcript of Records System<br />
-                                    Enhanced Enrolment System<br />
-                                    Expanded LAN using Novell Netware</p>
-                                </li>
-                            </ul>
-                            <!--experience timeline end-->
-
-                        </div>
-                        <!--Experience Column End-->
-
-                        <!--Education Column Start-->
-                        <div class="col-lg-6">
-                            <div class="sub-heading">
-                                <h3>Education</h3>
-                            </div>
-
-                            <!--education timeline start-->
-                            <ul class="education timeline">
-                                <!--timeline item-->
-                                <li class="event">
-                                    <h4><a href="https://www.credly.com/badges/e8603f3b-24e4-406c-84b6-94a032ba7264/public_url">Google Cybersecurity</a></a></h4>
-                                    <h5>
-                                        <span class="date">Sep 2024</span>
-                                        <span class="company">Coursera | Google</span>
-                                    </h5>
-                                    <p></p>
-                                </li>
-
-                                <!--timeline item-->
-                                <li class="event">
-                                    <h4><a href="https://www.credly.com/badges/9ba8feb9-d00c-4bb7-ba29-bae37aac190a/public_url">Google IT Automation with Python</a></h4>
-                                    <h5>
-                                        <span class="date">Aug 2022</span>
-                                        <span class="company">Coursera | Google</span>
-                                    </h5>
-                                    <p></p>
-                                </li>
-
-                                <!--timeline item-->
-                                <li class="event">
-                                    <h4>Google Cloud Digital Leading Training</h4>
-                                    <h5>
-                                        <span class="date">Aug 2022</span>
-                                        <span class="company">Coursera | Google</span>
-                                    </h5>
-                                    <p></p>
-                                </li>
-
-                                <!--timeline item-->
-                                <li class="event">
-                                    <h4>Bachelor of Science in Computer Information Science</h4>
-                                    <h5>
-                                        <span class="date">1989 - 1993</span>
-                                        <span class="company">AMA University</span>
-                                    </h5>
-                                    <p>Wrote a program to control and record movements of a robotic arm</p>
-                                </li>
-
-                                <!--timeline item-->
-                                <li class="event">
-                                    <h4>High School</h4>
-                                    <h5>
-                                        <span class="date">1986 - 1989</span>
-                                        <span class="company">Ramon Magsaysay High School</span>
-                                    </h5>
-                                    <p></p>
-                                </li>
-
-                                <!--timeline item-->
-                                <li class="event">
-                                    <h4>Grade School</h4>
-                                    <h5>
-                                        <span class="date">1980 - 1986</span>
-                                        <span class="company">GSIS Elementary School</span>
-                                    </h5>
-                                    <p></p>
-                                </li>
-                            </ul>
-                            <!--education timeline end-->
-
-                        </div>
-                        <!--Education Column End-->
-                    </div>
-
-                    <!--Skills Row Start-->
-                    <div class="row">
-
-                        <!-- Design Skills Column Start -->
-                        <div class="col-lg-6 skills">
-                            <div class="sub-heading">
-                                <h3>Skills</h3>
-                            </div>
-
-                            <!--skill item-->
-                            <div class="skill-item">
-                                <h4 class="progress-title">Linux</h4>
-
-                                <div class="progress">
-                                    <div class="progress-bar" style="width:91%">
-                                        <div class="progress-value">91%</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--skill item-->
-                            <div class="skill-item">
-                                <h4 class="progress-title">AWS:Lightsail,EC2,Route53,Cloudfront,RDS,etc</h4>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width:82%">
-                                        <div class="progress-value">82%</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--skill item-->
-                            <div class="skill-item">
-                                <h4 class="progress-title">Lighttpd/Nginx</h4>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width:94%">
-                                        <div class="progress-value">94%</div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <!-- Design Skills Column End -->
-
-                        <!-- Coding Skills Column Start -->
-                        <div class="col-lg-6 skills">
-                            <div class="sub-heading">
-                                <h3 data-shadow="Coding Skills">Skills</h3>
-                            </div>
-
-                            <!--skill item-->
-                            <div class="skill-item">
-                                <h4 class="progress-title">Networking</h4>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width:83%">
-                                        <div class="progress-value">83%</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--skill item-->
-                            <div class="skill-item">
-                                <h4 class="progress-title">VIM</h4>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width:75%">
-                                        <div class="progress-value">75%</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--skill item-->
-                            <div class="skill-item">
-                                <h4 class="progress-title">Troubleshooting</h4>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width:92%">
-                                        <div class="progress-value">92%</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- Coding Skills Column End -->
-
-                    </div>
-                    <!--Skills Row End-->
-
-                </div>
-            </section>
-            <!--Resume Page End-->
-
-            <!--Contact Page Start-->
-            <section id="contact"  class="page section-contact">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="page-heading">
-                                <h2 data-shadow="Contact">Contact</h2>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <!--Contact Information Column Start-->
-                        <div class="col-lg-6 contact-detail">
-                            <div class="sub-heading mb-20">
-                                <h3>Get In Touch</h3>
-                            </div>
-                            <p>Forms are currently not working due to non-existent PHP service on this webhost. Please send email instead or connect with me via LinkedIn.</p>
-                            <ul class="contact-info">
-                                <li class="email">
-                                    <span class="title">E-mail</span><span class="value">emailme@erwinlomibao.com</span>
-                                </li>
-                            </ul>
-
-                            <!--social media icons-->
-                            <div class="social-media">
-                                <h4>Follow</h4>
-                                <div class="social-media-icons">
-                                    <a href="#"><i class="fab fa-github"></i></a>
-                                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                                    <a href="#"><i class="fab fa-youtube"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Contact Information Column End-->
-
-
-                        <!--Contact Form Column Start-->
-                        <div class="col-lg-6">
-                            <form id="contact-form" method="post" action="mail.php">
-                                <!--input field-->
-                                <div class="input">
-                                    <input class="input-field cf-validate" id="cf-name" type="text" name="name" placeholder="Your Name"/>
-                                </div>
-
-                                <!--input field-->
-                                <div class="input">
-                                    <input class="input-field cf-validate" id="cf-email" type="text" name="email" placeholder="Your Email"/>
-                                </div>
-
-                                <!--input field-->
-                                <div class="input">
-                                    <textarea class="input-field cf-validate" id="cf-message" name="message" rows="5" placeholder="Message"></textarea>
-                                </div>
- 
-                                <div class="alert-container col-md-12"></div>
-
-                                <!--submit button-->
-                                <div class="submit-button text-center">
-                                    <button class="main-btn" id="cf-submit">Send Message</button>
-                                </div>
-
-                            </form>
-                        </div>
-                        <!--Contact Form Column End-->
-
-                    </div>
-
-                </div>
-            </section>
-            <!--Contact Page End-->
-
+            <!-- On-Screen Keyboard Area -->
+            <div id="keyboard">
+                <!-- Keyboard rows/keys will be generated by JS -->
+                Loading Keyboard...
+            </div>
         </div>
-        <!-- /pages-stack -->
+    </div>
 
-        <!--Jquery JS-->
-        <script src="js/jquery.min.js"></script>
-        <!--Plugins JS-->
-        <script src="js/plugins.min.js"></script>
-        <!--Site Main JS-->
-        <script src="js/main.js"></script>
-
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
-
-        <!-- TODO: Add SDKs for Firebase products that you want to use
-            https://firebase.google.com/docs/web/setup#available-libraries -->
-        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
-
-        <script>
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        var firebaseConfig = {
-            apiKey: "AIzaSyBUlE6pCe6Z5IkOGzkz8sXeDihkZ7_QWGo",
-            authDomain: "pivotal-crawler-300516.firebaseapp.com",
-            projectId: "pivotal-crawler-300516",
-            storageBucket: "pivotal-crawler-300516.appspot.com",
-            messagingSenderId: "1037776771192",
-            appId: "1:1037776771192:web:d33acfad8da5d25980758d",
-            measurementId: "G-FC15TN9ZJR"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-        </script>
-
-        <script>
-$('#video-container').YTPlayer({
-    videoURL: 'https://youtu.be/CU3aishZEMo',
-    containment: '#video-container',
-    autoPlay: true,
-    showControls: false,
-    loop: true,
-    addRaster: true,
-    mute: true,
-});
-        </script>
-
-    </body>
+    <!-- YouTube API Script -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <!-- Your Main JavaScript -->
+    <script src="js/main.js"></script>
+</body>
 </html>
