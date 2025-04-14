@@ -86,9 +86,10 @@ a:hover {
     height: 100%;
     padding: 15px;
     box-sizing: border-box;
-    /* overflow-y: auto; /* Scroll if content overflows */
-    overflow: hidden;
-    /* border-right: 2px solid #0f0; */ /* <<< REMOVED BORDER */
+    overflow-y: auto; /* Scroll if content overflows */
+    /*border-right: 0px solid #193f4a; <<< REMOVED BORDER */
+    scrollbar-color: #030504 #000; /* Custom scrollbar color */
+    scrollbar-width: thin; /* Thin scrollbar */
     font-size: 0.9em;
     display: flex;
     flex-direction: column;
@@ -120,6 +121,8 @@ a:hover {
     font-size: 0.85em;
     white-space: pre;
     overflow-x: hidden;
+    scrollbar-color: #030504 #000; /* Custom scrollbar color */
+    scrollbar-width: thin; /* Thin scrollbar */
     height: 120px; /* Fixed height */
     overflow-y: auto; /* Scrollable */
     border: 1px solid #030;
@@ -171,6 +174,8 @@ a:hover {
     padding: 15px;
     box-sizing: border-box;
     overflow-y: auto; /* Scrollable output */
+    scrollbar-color: #030504 #000; /* Custom scrollbar color */
+    scrollbar-width: thin; /* Thin scrollbar */
     display: flex;
     flex-direction: column; /* Stack output and input */
     background: rgba(0, 0, 0, 0.4); /* Slightly different background */
