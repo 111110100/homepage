@@ -1,39 +1,35 @@
 {
   "hosting": {
     "headers": [
-        {
-            "source": "index.html",
-            "headers": [
-                {
-                    "key": "Cache-Control",
-                    "value": "no-cache, no-store, must-revalidate"
-                }
-            ]
-        },
-        {
-            "source": "/css/style.css",
-            "headers": [
-                {
-                    "key": "Cache-Control",
-                    "value": "no-cache, no-store, must-revalidate"
-                }
-            ]
-        },
-        {
-            "source": "/js/main.js",
-            "headers": [
-                {
-                    "key": "Cache-Control",
-                    "value": "no-cache, no-store, must-revalidate"
-                }
-            ]
-        }
+      {
+        "source": "index.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=3600"
+          }
+        ]
+      },
+      {
+        "source": "/css/style.css",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=3600"
+          }
+        ]
+      },
+      {
+        "source": "/js/main.js",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=3600"
+          }
+        ]
+      }
     ],
     "public": "public",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   }
 }
