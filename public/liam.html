@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What to eat?</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f0f0;
+  }
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Adds space between options */
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 20px auto;
+  }
+
+  .radio-option {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    cursor: pointer;
+    transition: border-color 0.2s ease-in-out;
+  }
+
+  .radio-option:has(input:checked) {
+    border-color: #007bff;
+    background-color: #f0f8ff;
+  }
+
+  /* Hide original radio button */
+  .radio-option input[type="radio"] {
+    display: none;
+  }
+
+  .custom-radio {
+    width: 25px;
+    height: 25px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .radio-option input:checked + .custom-radio {
+    border-color: #007bff;
+  }
+
+  /* Inner dot for the selected radio */
+  .custom-radio::after {
+    content: '';
+    display: none;
+    width: 15px;
+    height: 15px;
+    width: 15px;
+    height: 15px;
+    background-color: #ffffff;
+    border-radius: 50%;
+  }
+
+  .radio-label {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  .radio-option input:checked + .custom-radio::after {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+
+  .reset-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #fff;
+    background-color: #6c757d; /* A neutral gray color */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .reset-button:hover {
+    background-color: #5a6268;
+  }
+</style>
+</head>
+<body>
+
+    <h1>I want to eat:</h1>
+
+    <form>
+        <div class="radio-group">
+            <!-- Option 1: KFC -->
+            <label class="radio-option">
+                <input type="radio" name="food-choice" value="kfc">
+                <span class="custom-radio"></span>
+                <span class="radio-label">KFC</span>
+            </label>
+
+            <!-- Option 2: Maccas -->
+            <label class="radio-option">
+                <input type="radio" name="food-choice" value="maccas">
+                <span class="custom-radio"></span>
+                <span class="radio-label">Maccas</span>
+            </label>
+
+            <!-- Option 3: Hungry Jack's -->
+            <label class="radio-option">
+                <input type="radio" name="food-choice" value="hungry-jacks">
+                <span class="custom-radio"></span>
+                <span class="radio-label">Hungry Jack's</span>
+            </label>
+
+            <!-- Option 4: Domino's -->
+            <label class="radio-option">
+                <input type="radio" name="food-choice" value="dominos">
+                <span class="custom-radio"></span>
+                <span class="radio-label">Domino's</span>
+            </label>
+
+            <button type="reset" class="reset-button">Reset</button>
+        </div>
+    </form>
+
+</body>
+</html>
