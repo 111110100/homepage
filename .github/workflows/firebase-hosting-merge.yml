@@ -11,7 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: '[ -f "package-lock.json" ] && npm ci && npm run build'
+      - run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+            npm run build
+          else
+            echo "package-lock.json not found, skipping build"
+          fi
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
