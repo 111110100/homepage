@@ -36,3 +36,5 @@ open about
 
 ## Work in progress... just like everything else
 Color palatte: https://color.adobe.com/-Legacy-Film-Poster-color-theme-13490595/
+
+## Added MemBlaze placeholder
